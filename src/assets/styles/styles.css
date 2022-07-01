@@ -3,11 +3,65 @@
 }
 
 .color{
-    background-color: black !important;
+    background-color: green !important;
 }
 
 .titulo{
     background-color: #0D021E;
-    height: 10vh;
+    height: 12vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
+
+.titulo-imagen{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo-imagen-img{
+    width: 60px;
+    margin: 0% 10px;
+}
+
+
+.titulo-barra{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-left: 30px;
+}
+
+h1{
+  color: white;
+  font-size: 24px;
+}
+
+.titulo-nombre{
+    color: white;
+}
+
+.contenido{
+    background-color: #241145;
+    min-height: 88vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card{
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 200px;
+}
+
+
+
 
