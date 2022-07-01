@@ -1,0 +1,13 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+.color{
+    background-color: black !important;
+}
+
+.titulo{
+    background-color: #0D021E;
+    height: 10vh;
+}
+
