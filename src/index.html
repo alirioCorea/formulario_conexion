@@ -4,35 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
     <link rel="shortcut icon" href="./assets/img/icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="./assets/styles/styles.css">
-    <link rel="stylesheet" href="./assets/styles/bootstrap.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/styles/index.css">
+    <title>Tareas</title>
 </head>
 <body>
-    <header class="titulo">
-        <div class="titulo-imagen">
-            <img src="./assets/img/icon.png" alt="icono" class="titulo-imagen-img">
+    <div class="container">
+        <div class="container-button">
+            <a href="./tarea.html">
+                <button class="button">
+                    <p class="button-text">Crear Tarea</p>
+                    <img src="./assets/img/plus.png" alt="añadir" width="70px">
+                </button>
+            </a>
         </div>
-        <div class="titulo-barra">
-            <h1 class="titulo-barra-nombre">Lista de Tareas</h1>
-        </div>
-    </header>
-    <main class="contenido">
-        <button class="card bg-warning" id="newTarea" onclick="newForm()">
-            <h1>Crear nueva Tarea</h1>
-        </button>
-        <div class="" id="form-content">
-            <form id="formulario">
-            </form>
-        </div>
-    </main>
-    <script src="./assets/js/main.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="./assets/js/bootstrap.min.js"></script>
-    <script src="./assets/js/popper.min.js"></script>
+    </div>
 </body>
 </html>

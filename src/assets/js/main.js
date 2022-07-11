@@ -1,45 +1,7 @@
 const form=document.querySelector('#formulario');
-const newTarea=document.querySelector('#newTarea');
-const form_content=document.querySelector('#form-content');
-
-function newForm(){
-    const formulario=`
-    <div class="mb-3">
-        <select class="form-select" aria-label="Default select example" id="form-tarea" onChange="crearLista()">
-            <option disabled selected>Tarea</option>
-            <option value="1">Desarrollo web</option>
-            <option value="2">Desarrollo móvil</option>
-            <option value="3">Videojuegos</option>
-            <option value="4">Realidad virtual</option>
-            <option value="5">Machine learning</option>
-            <option value="6">Seguridad informática</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <select class="form-select" aria-label="Default select example" id="form-personal">
-            <option disabled selected>Personal</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label descripcion">Descripción</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-    <div class="mb-3">
-        <select class="form-select" id="form-estado">
-            <option disabled selected>Estado</option>
-            <option value="1">Iniciado</option>
-            <option value="2">En progreso</option>
-            <option value="3">Se reintentara</option>
-            <option value="4">Terminada</option>
-        </select>
-    </div>
-    <div class="mb-3 d-flex justify-content-center">
-        <input type="submit" value="Añadir" class="btn btn-danger">
-    </div>
-    `;
-    form.innerHTML=formulario;
-    newTarea.style.display = 'none';
-}
+const cards=document.querySelector('#cards');
+const database=window.localStorage;
+let registroList=0;
 
 function crearLista(){
     const form_tarea=document.querySelector('#form-tarea');
@@ -92,6 +54,24 @@ function crearPersonas(personal,tarea){
 
 form.addEventListener("submit", e=>{
     e.preventDefault();
+    let form_tarea=document.querySelector('#tarea');
+    let tipo_tarea=document.querySelector('#form-tarea');
+    let form_personal=document.querySelector('#form-personal');
+    let form_descripcion=document.querySelector('#form-descripcion');
+    let form_estado=document.querySelector('#form-estado');
+
+    if(validarFormulario(form_tarea.value,tipo_tarea.value,form_personal.value,form_descripcion.value,form_estado.value)){
+        let tarea={
+            tarea:form_tarea.value,
+            tareaTipo:tipo_tarea.options[tipo_tarea.selectedIndex].innerText,
+            personal:form_personal.options[form_personal.selectedIndex].innerText,
+            descripcion:form_descripcion.value,
+            estado:form_estado.options[form_estado.selectedIndex].innerText,
+        }
+        guardarDtos(tarea);
+        registroList++;
+        crearCard(tarea);
+    }
 });
 
 function crearOpcion(array){
@@ -104,5 +84,66 @@ function crearOpcion(array){
     return salida;
 }
 
-function validarFormulario(){
+function validarFormulario(tarea,form_tarea,form_personal,form_descripcion,form_estado){
+    if(tarea=="" || form_tarea==""|| form_personal==""|| form_descripcion==""|| form_estado=="" || form_descripcion.length<20){
+        Swal.fire({
+            title:"Error",
+            text:"Algunos campos estan vacios o la decripcion esta mal",
+            icon:"error"
+        });
+        return false;
+    }
+    else{
+        Swal.fire({
+            title:`Tarea Añadida`,
+            icon:"success"
+        });
+
+        return true;
+    }
+} 
+
+function guardarDtos(datos){
+    database.setItem(registroList,JSON.stringify(datos));
+}
+
+function crearCard(card){
+    cards.innerHTML+=`
+    <div class="card">
+        <div class="card-titulo card-espacio">
+            <h3>${card.tarea}</h3>
+        </div>
+        <div class="card-categoria card-espacio">
+            <h3 class="card-ele">Categoria: </h3>
+            <p>${card.tareaTipo}</p>
+        </div>
+        <div class="card-desarrollo card-espacio">
+            <h3 class="card-ele">Desarollador: </h3>
+            <p>${card.personal}</p>
+        </div>
+        <div class="card-estado card-espacio">
+            <h3 class="card-ele">Estado: </h3>
+            <p>${card.estado}</p>
+        </div>
+        <div class="card-categoria card-espacio">
+            <p>
+                ${card.descripcion}. <span>Ver mas</span>
+            </p>
+        </div>
+    </div>
+    `;
+}
+
+function consultarLocalStorage() {
+    let cantidadDeRegistros = parseInt(database.getItem("cantidadDeRegistros"));
+    if (cantidadDeRegistros > 0) {
+        registroActual = cantidadDeRegistros;
+        let claves = Object.keys(database).sort(function (a, b){return a-b});
+        for (let i = 0; i < claves.length; i++) {
+            var persona = JSON.parse(database.getItem(claves[i]));
+            if(typeof(persona)!="number"){
+                imprimirDatos(persona);
+            }
+        }
+    }
 }

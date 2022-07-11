@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="./assets/styles/styles.css">
+    <link rel="shortcut icon" href="./assets/img/icon.png" type="image/x-icon">
+</head>
+<body>
+    <header class="titulo">
+        <div class="titulo-barra">
+            <h1 class="titulo-barra-nombre">Lista de Tareas</h1>
+        </div>
+    </header>
+    <main class="contenido">
+        <div class="form-container">
+            <form id="formulario" class="form">
+                <div class="form-elemen">
+                    <label for="tarea" class="descripcion elemento">Tarea</label>
+                    <textarea class="elemento area" id="tarea" rows="1"></textarea>
+                </div>
+                <div class="form-elemen">
+                    <select class="elemento select" aria-label="Default select example" id="form-tarea" onChange="crearLista()">
+                        <option disabled selected>Tarea</option>
+                        <option value="1">Desarrollo web</option>
+                        <option value="2">Desarrollo móvil</option>
+                        <option value="3">Videojuegos</option>
+                        <option value="4">Realidad virtual</option>
+                        <option value="5">Machine learning</option>
+                        <option value="6">Seguridad informática</option>
+                    </select>
+                </div>
+                <div class="form-elemen">
+                    <select class="elemento select" aria-label="Default select example" id="form-personal">
+                        <option disabled selected class="elemento">Personal</option>
+                    </select>
+                </div>
+                <div class="form-elemen">
+                    <label for="form-descripcion" class="form-label descripcion elemento">Descripción</label>
+                    <textarea class="elemento area" id="form-descripcion" rows="1"></textarea>
+                </div>
+                <div class="form-elemen">
+                    <select class="elemento select" id="form-estado">
+                        <option disabled selected>Estado</option>
+                        <option value="1">Iniciado</option>
+                        <option value="2">En progreso</option>
+                        <option value="3">Se reintentara</option>
+                        <option value="4">Terminada</option>
+                    </select>
+                </div>
+                <div class="form-elemen">
+                    <button type="submit" class="btn">Añadir</button>
+                </div>
+            </form>
+        </div>
+        <div class="cards" id="cards">
+        </div>
+    </main>
+    <script src="./assets/js/main.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
