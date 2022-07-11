@@ -59,18 +59,27 @@ form.addEventListener("submit", e=>{
     let form_personal=document.querySelector('#form-personal');
     let form_descripcion=document.querySelector('#form-descripcion');
     let form_estado=document.querySelector('#form-estado');
-
-    if(validarFormulario(form_tarea.value,tipo_tarea.value,form_personal.value,form_descripcion.value,form_estado.value)){
-        let tarea={
-            tarea:form_tarea.value,
-            tareaTipo:tipo_tarea.options[tipo_tarea.selectedIndex].innerText,
-            personal:form_personal.options[form_personal.selectedIndex].innerText,
-            descripcion:form_descripcion.value,
-            estado:form_estado.options[form_estado.selectedIndex].innerText,
+    if(tipo_tarea.value==6){ 
+        Swal.fire({
+            title:"Error",
+            text:"No se puede añadir mas tareas a este tipo",
+            icon:"error"
+        });
+    }
+    else{
+        if(validarFormulario(form_tarea.value,tipo_tarea.value,form_personal.value,form_descripcion.value,form_estado.value)){
+            let tarea={
+                tarea:form_tarea.value,
+                tareaTipo:tipo_tarea.options[tipo_tarea.selectedIndex].innerText,
+                personal:form_personal.options[form_personal.selectedIndex].innerText,
+                descripcion:form_descripcion.value,
+                estado:form_estado.options[form_estado.selectedIndex].innerText,
+            }
+            guardarDtos(tarea);
+            registroList++;
+            crearCard(tarea);
+            form.reset();
         }
-        guardarDtos(tarea);
-        registroList++;
-        crearCard(tarea);
     }
 });
 
